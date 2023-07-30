@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  duckdns:
+    image: ghcr.io/linuxserver/duckdns
+    container_name: duckdns
+    env_file:
+      - linuxserverio.env
+      - private.env
+    environment:
+      - LOG_FILE=true
+    volumes:
+      - ./volumes/config:/config
+    restart: on-failure
+
