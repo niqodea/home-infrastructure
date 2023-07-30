@@ -1,0 +1,23 @@
+version: "2.1"
+services:
+  wireguard:
+    image: lscr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    env_file:
+      - private.env
+      - linuxserverio.env
+    environment:
+      - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1 # Tunnels everything through vpn
+      - PEERDNS=auto
+      - SERVERPORT=${WIREGUARD_SERVERPORT}
+    ports:
+      - ${WIREGUARD_SERVERPORT}:${WIREGUARD_SERVERPORT}/udp
+    volumes:
+      - ./volumes/config:/config
+    restart: on-failure
+
