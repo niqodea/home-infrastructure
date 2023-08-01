@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    env_file:
+      - linuxserverio.env
+    volumes:
+      - ./volumes/config:/config
+      - ${MEDIA_VOLUME}:/media
+    restart: on-failure
+
+networks:
+  default:
+    name: ${REVERSE_PROXY_NETWORK}
+    external: true
+
