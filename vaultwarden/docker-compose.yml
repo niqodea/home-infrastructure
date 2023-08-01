@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    env_file:
+      - private.env
+    environment:
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - ./volumes/data:/data
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: ${REVERSE_PROXY_NETWORK}
+
