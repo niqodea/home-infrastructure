@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    network_mode: container:${GLUETUN_CONTAINER_NAME}
+    env_file:
+      - linuxserverio.env
+    environment:
+      - WEBUI_PORT=${QBITTORRENT_WEBUI_PORT}
+    volumes:
+      - ./volumes/config:/config
+      - ${MEDIA_VOLUME}/downloads:/downloads
+    restart: on-failure
+
