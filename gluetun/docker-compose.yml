@@ -1,0 +1,18 @@
+version: "3"
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: ${GLUETUN_CONTAINER_NAME}
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - private.env
+    volumes:
+      - ./volumes/gluetun:/gluetun
+    restart: on-failure
+
+networks:
+  default:
+    name: ${REVERSE_PROXY_NETWORK}
+    external: true
+
