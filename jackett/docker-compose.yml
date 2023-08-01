@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett
+    container_name: jackett
+    env_file:
+      - linuxserverio.env
+    environment:
+      - AUTO_UPDATE=true
+    volumes:
+      - ./volumes/config:/config
+    restart: on-failure
+
+networks:
+  default:
+    name: ${REVERSE_PROXY_NETWORK}
+    external: true
+
