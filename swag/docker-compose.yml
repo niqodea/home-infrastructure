@@ -1,0 +1,26 @@
+version: "2.1"
+services:
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - linuxserverio.env
+    environment:
+      # Ref: https://docs.linuxserver.io/general/swag#create-container-via-duckdns-validation-with-a-wildcard-cert
+      - URL=${DUCKDNS_SUBDOMAIN}.duckdns.org
+      - SUBDOMAINS=wildcard
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN=${DUCKDNS_TOKEN}
+    ports:
+      - ${SWAG_HTTPS_PORT}:443
+      # - ${SWAG_HTTP_PORT}:80
+    volumes:
+      - ./volumes/config:/config
+    restart: on-failure
+
+networks:
+  default:
+    name: ${REVERSE_PROXY_NETWORK}
+
