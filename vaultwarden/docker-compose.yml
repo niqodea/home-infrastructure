@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   vaultwarden:
-    image: vaultwarden/server:latest
+    image: vaultwarden/server@sha256:c2849f8189e4d425a9d80db0380566cc38577b289b9e6c88330e190e19af5a30
     container_name: vaultwarden
     env_file:
       - private.env

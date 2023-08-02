@@ -1,7 +1,7 @@
 version: "3"
 services:
   gluetun:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
     container_name: ${GLUETUN_CONTAINER_NAME}
     cap_add:
       - NET_ADMIN

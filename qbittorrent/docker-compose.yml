@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent
+    image: lscr.io/linuxserver/qbittorrent@sha256:cd564c2074c3f502f5cd17df107aa7d1b7131fc5942c94f8c5ee284c628d5f58
     container_name: qbittorrent
     network_mode: container:${GLUETUN_CONTAINER_NAME}
     env_file:

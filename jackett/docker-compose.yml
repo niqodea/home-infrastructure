@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   jackett:
-    image: lscr.io/linuxserver/jackett
+    image: lscr.io/linuxserver/jackett@sha256:930b4335476efd06f27c45092e9425d2d013b56b1a62db3abda3992658bd23eb
     container_name: jackett
     env_file:
       - linuxserverio.env
