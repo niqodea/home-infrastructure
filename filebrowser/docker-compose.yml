@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  jellyfin:
+    image: filebrowser/filebrowser@sha256:17bca6878b0aa6e6f6101115ad0d4917966f7a5cd7d4c047c0dce883d9c0679c
+    container_name: filebrowser
+    environment:
+      - FB_PORT=8080
+      # Isolate database file in a directory we can mount as volume
+      - FB_DATABASE=/config/database.db
+    volumes:
+      - ./volumes/config:/config
+      - ${FILEBROWSER_VOLUME}:/srv
+    restart: on-failure
+
+networks:
+  default:
+    name: ${REVERSE_PROXY_NETWORK}
+    external: true
+
