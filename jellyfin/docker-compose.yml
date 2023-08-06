@@ -9,7 +9,7 @@ services:
       - ./volumes/config:/config
       - ${MEDIA_VOLUME}/movies:/data/movies
       - ${MEDIA_VOLUME}/shows:/data/shows
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

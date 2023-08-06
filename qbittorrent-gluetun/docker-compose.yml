@@ -9,7 +9,7 @@ services:
     volumes:
       - ./volumes/config:/config
       - ${MEDIA_VOLUME}/downloads:/downloads
-    restart: on-failure
+    restart: unless-stopped
 
   qbittorrent-gluetun:
     image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
@@ -23,7 +23,7 @@ services:
       - FIREWALL_OUTBOUND_SUBNETS=${HOST_NETWORK_SUBNET}
     volumes:
       - ./volumes/gluetun:/gluetun
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

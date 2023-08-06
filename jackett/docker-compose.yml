@@ -9,7 +9,7 @@ services:
       - AUTO_UPDATE=true
     volumes:
       - ./volumes/config:/config
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

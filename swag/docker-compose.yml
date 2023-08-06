@@ -21,7 +21,7 @@ services:
       swag-network:
     volumes:
       - ./volumes/config:/config
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   main-network:

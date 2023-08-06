@@ -10,7 +10,7 @@ services:
     networks:
       default:
         ipv4_address: ${DNSMASQ_ADDRESS}
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

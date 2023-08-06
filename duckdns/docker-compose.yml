@@ -11,5 +11,5 @@ services:
       - LOG_FILE=true
     volumes:
       - ./volumes/config:/config
-    restart: on-failure
+    restart: unless-stopped
 

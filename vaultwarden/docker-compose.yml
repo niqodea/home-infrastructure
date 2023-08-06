@@ -9,7 +9,7 @@ services:
       - WEBSOCKET_ENABLED=true
     volumes:
       - ./volumes/data:/data
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

@@ -21,7 +21,7 @@ services:
       - PEERDNS=${DNSMASQ_ADDRESS},${PUBLIC_DNS_ADDRESS}
     volumes:
       - ./volumes/config:/config
-    restart: on-failure
+    restart: unless-stopped
 
   wireguard-gluetun:
     image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
@@ -37,7 +37,7 @@ services:
       - ${WIREGUARD_GLUETUN_SERVERPORT}:51820/udp
     volumes:
       - ./volumes/gluetun:/gluetun
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

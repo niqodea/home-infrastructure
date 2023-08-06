@@ -10,7 +10,7 @@ services:
     volumes:
       - ./volumes/config:/config
       - ${FILEBROWSER_VOLUME}:/srv
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:

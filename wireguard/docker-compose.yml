@@ -22,7 +22,7 @@ services:
       - 51820:${WIREGUARD_SERVERPORT}/udp
     volumes:
       - ./volumes/config:/config
-    restart: on-failure
+    restart: unless-stopped
 
 networks:
   default:
