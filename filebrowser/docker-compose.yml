@@ -1,6 +1,6 @@
 version: "2.1"
 services:
-  jellyfin:
+  filebrowser:
     image: filebrowser/filebrowser@sha256:17bca6878b0aa6e6f6101115ad0d4917966f7a5cd7d4c047c0dce883d9c0679c
     container_name: filebrowser
     environment:
@@ -14,6 +14,6 @@ services:
 
 networks:
   default:
-    name: ${REVERSE_PROXY_NETWORK}
+    name: ${SWAG_NETWORK}
     external: true
 

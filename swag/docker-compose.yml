@@ -15,12 +15,21 @@ services:
       - DUCKDNSTOKEN=${DUCKDNS_TOKEN}
     ports:
       - ${SWAG_HTTPS_PORT}:443
-      # - ${SWAG_HTTP_PORT}:80
+    networks:
+      main-network:
+        ipv4_address: ${SWAG_ADDRESS}
+      swag-network:
     volumes:
       - ./volumes/config:/config
     restart: on-failure
 
 networks:
-  default:
-    name: ${REVERSE_PROXY_NETWORK}
+  main-network:
+    name: ${MAIN_NETWORK}
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${MAIN_NETWORK_SUBNET}
+  swag-network:
+    name: ${SWAG_NETWORK}
 

@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  dnsmasq:
+    image: strm/dnsmasq
+    container_name: dnsmasq
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
+    networks:
+      default:
+        ipv4_address: ${DNSMASQ_ADDRESS}
+    restart: on-failure
+
+networks:
+  default:
+    name: ${MAIN_NETWORK}
+    external: true
+

@@ -13,6 +13,6 @@ services:
 
 networks:
   default:
+    name: ${MAIN_NETWORK}
     external: true
-    name: ${REVERSE_PROXY_NETWORK}
 

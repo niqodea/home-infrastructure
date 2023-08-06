@@ -1,8 +1,9 @@
 version: "2.1"
 services:
-  wireguard:
+  wireguard-gluetun-internal:
     image: lscr.io/linuxserver/wireguard@sha256:a27dc2b63245fa1c20fc55edf9aebf7cf3add71000557177c9fa62dba65b5d29
-    container_name: wireguard
+    container_name: wireguard-gluetun-internal
+    network_mode: service:wireguard-gluetun
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -12,16 +13,30 @@ services:
       - wireguard.env
       - linuxserverio.env
     environment:
-      - SERVERPORT=${WIREGUARD_SERVERPORT}
+      - SERVERPORT=${WIREGUARD_GLUETUN_SERVERPORT}
       - INTERNAL_SUBNET=${WIREGUARD_NETWORK_SUBNET}
       # Tunnel everything through vpn
       - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1
       # Use custom DNS setup to point to local services
       - PEERDNS=${DNSMASQ_ADDRESS},${PUBLIC_DNS_ADDRESS}
-    ports:
-      - 51820:${WIREGUARD_SERVERPORT}/udp
     volumes:
       - ./volumes/config:/config
+    restart: on-failure
+
+  wireguard-gluetun:
+    image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
+    container_name: wireguard-gluetun
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - gluetun.env
+    environment:
+      # Allow access to host local network
+      - FIREWALL_OUTBOUND_SUBNETS=${HOST_NETWORK_SUBNET}
+    ports:
+      - ${WIREGUARD_GLUETUN_SERVERPORT}:51820/udp
+    volumes:
+      - ./volumes/gluetun:/gluetun
     restart: on-failure
 
 networks:

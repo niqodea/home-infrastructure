@@ -12,6 +12,6 @@ services:
 
 networks:
   default:
-    name: ${REVERSE_PROXY_NETWORK}
+    name: ${SWAG_NETWORK}
     external: true
 
