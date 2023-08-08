@@ -1,5 +1,6 @@
 version: "2.1"
 services:
+
   wireguard-gluetun-internal:
     image: lscr.io/linuxserver/wireguard@sha256:a27dc2b63245fa1c20fc55edf9aebf7cf3add71000557177c9fa62dba65b5d29
     container_name: wireguard-gluetun-internal
@@ -17,10 +18,20 @@ services:
       - INTERNAL_SUBNET=${WIREGUARD_NETWORK_SUBNET}
       # Tunnel everything through vpn
       - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1
-      # Use custom DNS setup to point to local services
-      - PEERDNS=${DNSMASQ_ADDRESS},${PUBLIC_DNS_ADDRESS}
     volumes:
       - ./volumes/config:/config
+    restart: unless-stopped
+
+  # We use dnsmasq instead of wireguard's built-in coredns
+  # By hosting DNS server in the same gluetun container we tunnel queries through VPN
+  wireguard-gluetun-internal-dnsmasq:
+    image: strm/dnsmasq
+    container_name: wireguard-gluetun-internal-dnsmasq
+    network_mode: service:wireguard-gluetun-internal
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
     restart: unless-stopped
 
   wireguard-gluetun:
@@ -31,6 +42,8 @@ services:
     env_file:
       - gluetun.env
     environment:
+      # No DNS over TLS as that would clash with dnsmasq
+      - DOT=off
       # Allow access to host local network
       - FIREWALL_OUTBOUND_SUBNETS=${HOST_NETWORK_SUBNET}
     ports:

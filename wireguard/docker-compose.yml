@@ -1,5 +1,6 @@
 version: "2.1"
 services:
+
   wireguard:
     image: lscr.io/linuxserver/wireguard@sha256:a27dc2b63245fa1c20fc55edf9aebf7cf3add71000557177c9fa62dba65b5d29
     container_name: wireguard
@@ -16,12 +17,21 @@ services:
       - INTERNAL_SUBNET=${WIREGUARD_NETWORK_SUBNET}
       # Tunnel everything through vpn
       - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1
-      # Use custom DNS setup to point to local services
-      - PEERDNS=${DNSMASQ_ADDRESS},${PUBLIC_DNS_ADDRESS}
     ports:
-      - 51820:${WIREGUARD_SERVERPORT}/udp
+      - ${WIREGUARD_SERVERPORT}:51820/udp
     volumes:
       - ./volumes/config:/config
+    restart: unless-stopped
+
+  # We use dnsmasq instead of wireguard's built-in coredns
+  wireguard-dnsmasq:
+    image: strm/dnsmasq
+    container_name: wireguard-dnsmasq
+    network_mode: service:wireguard
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
     restart: unless-stopped
 
 networks:

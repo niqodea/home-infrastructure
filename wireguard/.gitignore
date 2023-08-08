@@ -1,2 +1,8 @@
-/private.env
-/volumes
+/volumes/*
+!/volumes/config
+/volumes/config/*
+!/volumes/config/wg0.conf.sample
+!/volumes/config/coredns
+/volumes/config/coredns/*
+!/volumes/config/coredns/Corefile
+!/volumes/dnsmasq.conf.sample
