@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  librespeed:
+    image: lscr.io/linuxserver/librespeed@sha256:a0fb51b5ecee687470d9861cdccd41ef8f2d7117e550bab41a58f8aeba1c8ffa
+    container_name: librespeed
+    env_file:
+      - linuxserverio.env
+    volumes:
+      - ./volumes/config:/config
+    restart: unless-stopped
+
+networks:
+  default:
+    name: ${SWAG_NETWORK}
+    external: true
+
