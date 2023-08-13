@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma@sha256:d841c0478e0c1d672aeada6cdfab075cad891236b34fc65abcf0efc6e9e8ebe4
+    container_name: uptime-kuma
+    networks:
+      - main-network
+      - swag-network
+    volumes:
+      - ./volumes/data:/app/data
+    restart: unless-stopped
+
+networks:
+  main-network:
+    name: ${MAIN_NETWORK}
+    external: true
+  swag-network:
+    name: ${SWAG_NETWORK}
+    external: true
+

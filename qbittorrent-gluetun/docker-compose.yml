@@ -21,6 +21,8 @@ services:
     environment:
       # Allow access to host local network
       - FIREWALL_OUTBOUND_SUBNETS=${HOST_NETWORK_SUBNET}
+      # Expose health service externally
+      - HEALTH_SERVER_ADDRESS=0.0.0.0:9999
     volumes:
       - ./volumes/gluetun:/gluetun
     restart: unless-stopped
