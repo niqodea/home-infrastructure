@@ -9,6 +9,8 @@ services:
     volumes:
       - ./volumes/config:/config
       - ${MEDIA_VOLUME}/downloads:/downloads
+    depends_on:
+      - qbittorrent-gluetun
     restart: unless-stopped
 
   qbittorrent-gluetun:

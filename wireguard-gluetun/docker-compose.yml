@@ -21,6 +21,8 @@ services:
       - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1
     volumes:
       - ./volumes/config:/config
+    depends_on:
+      - wireguard-gluetun
     restart: unless-stopped
 
   # We use dnsmasq instead of wireguard's built-in coredns
@@ -33,6 +35,8 @@ services:
       - NET_ADMIN
     volumes:
       - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
+    depends_on:
+      - wireguard-gluetun-internal
     restart: unless-stopped
 
   wireguard-gluetun:

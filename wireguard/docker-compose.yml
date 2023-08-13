@@ -33,6 +33,8 @@ services:
       - NET_ADMIN
     volumes:
       - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
+    depends_on:
+      - wireguard
     restart: unless-stopped
 
 networks:
