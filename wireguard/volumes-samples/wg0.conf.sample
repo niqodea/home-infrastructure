@@ -1,3 +1,5 @@
+# After having run the Wireguard container to generate the file in volumes/config/wg0.conf,
+# edit the file to include the last additional PostUp rule below.
 [Interface]
 Address = 0.0.0.0
 ListenPort = 00000
