@@ -9,7 +9,8 @@ services:
       - FB_DATABASE=/config/database.db
     volumes:
       - ./volumes/config:/config
-      - ${FILEBROWSER_VOLUME}:/srv
+      - ${MEDIA_VOLUME}:/srv/media
+      - ${FILEBROWSER_SHARE_VOLUME}:/srv/share
     restart: unless-stopped
 
 networks:
