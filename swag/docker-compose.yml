@@ -17,7 +17,7 @@ services:
       - ${SWAG_HTTPS_PORT}:443
     networks:
       main-network:
-        ipv4_address: ${SWAG_ADDRESS}
+        ipv4_address: ${MAIN_NETWORK_SWAG_ADDRESS}
       swag-network:
     volumes:
       - ./volumes/config:/config
@@ -30,6 +30,7 @@ networks:
     ipam:
       config:
         - subnet: ${MAIN_NETWORK_SUBNET}
+          ip_range: ${MAIN_NETWORK_IP_RANGE}
   swag-network:
     name: ${SWAG_NETWORK}
 
