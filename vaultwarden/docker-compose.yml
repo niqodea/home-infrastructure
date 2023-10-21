@@ -13,6 +13,6 @@ services:
 
 networks:
   default:
-    name: ${MAIN_NETWORK}
+    name: ${SWAG_NETWORK}
     external: true
 
