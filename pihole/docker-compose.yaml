@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole@sha256:562766abc805d5005bb2d2aa5d4bbf2d9b347380b1ea4504fb59b2100500f672
+    network_mode: host  # dhcp protocol assumes the server is located in the managed network
+    env_file:
+      - linuxserverio.env  # TODO: Rename this, used for non-linuxserver containers too
+    environment:
+      - INTERFACE=enp3s0 # default eth0 is not the one created by docker in host network mode
+    volumes:
+      - ./volumes/dnsmasq.d:/etc/dnsmasq.d
+      - ./volumes/pihole:/etc/pihole
+    cap_add:
+      - NET_ADMIN  # needed for dhcp
+    restart: unless-stopped

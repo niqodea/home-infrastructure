@@ -1,0 +1,2 @@
+# Put this in volumes/dnsmasq.d/00-wildcard.conf
+address=/${DUCKDNS_SUBDOMAIN}.duckdns.org/${HOST_ADDRESS}
