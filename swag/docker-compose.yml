@@ -14,7 +14,7 @@ services:
       - VALIDATION=duckdns
       - DUCKDNSTOKEN=${DUCKDNS_TOKEN}
     ports:
-      - ${SWAG_HTTPS_PORT}:443
+      - 443:443  # Using another port can lead to issues (e.g. header URL mismatch)
     networks:
       main-network:
         ipv4_address: ${MAIN_NETWORK_SWAG_ADDRESS}
