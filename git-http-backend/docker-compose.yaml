@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  git-http-backend:
+    container_name: git-http-backend
+    image: git-http-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ROOT: /var/www/git
+    volumes:
+      - ./root.plug:/var/www/git
+    restart: unless-stopped
+
+networks:
+  default:
+    name: ${SWAG_NETWORK}
+    external: true
