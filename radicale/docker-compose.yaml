@@ -1,0 +1,29 @@
+# Ref: https://github.com/tomsquest/docker-radicale/blob/55772db280ec8df20a4963549be2cfb6d4f1af86/docker-compose.yml
+
+version: '3.7'
+
+services:
+  radicale:
+    image: tomsquest/docker-radicale
+    container_name: radicale
+    # ports:
+    #   - 127.0.0.1:5232:5232
+    # init: true
+    # read_only: true
+    # security_opt:
+    #   - no-new-privileges:true
+    # cap_drop:
+    #   - ALL
+    # cap_add:
+    #   - SETUID
+    #   - SETGID
+    #   - CHOWN
+    #   - KILL
+    restart: unless-stopped
+    volumes:
+      - ./data.plug:/data
+
+networks:
+  default:
+    name: ${SWAG_NETWORK}
+    external: true
