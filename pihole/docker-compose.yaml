@@ -8,6 +8,7 @@ services:
     env_file:
       - linuxserverio.env  # TODO: Rename this, used for non-linuxserver containers too
     environment:
+      # TODO: Change this hardcoded enp3s0, can be something else too (e.g. enp2s0)
       - INTERFACE=enp3s0 # default eth0 is not the one created by docker in host network mode
     volumes:
       - ./volumes/dnsmasq.d:/etc/dnsmasq.d
