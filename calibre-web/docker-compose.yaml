@@ -1,0 +1,15 @@
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    env_file:
+      - linuxserverio.env
+    volumes:
+      - ./config.plug:/config
+      - ./books.plug:/books
+    restart: unless-stopped
+
+networks:
+  default:
+    name: ${SWAG_NETWORK}
+    external: true

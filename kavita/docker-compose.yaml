@@ -1,0 +1,15 @@
+services:
+  kavita:
+    image: lscr.io/linuxserver/kavita:latest
+    container_name: kavita
+    env_file:
+      - linuxserverio.env
+    volumes:
+      - ./config.plug:/config
+      - ./books.plug:/data
+    restart: unless-stopped
+
+networks:
+  default:
+    name: ${SWAG_NETWORK}
+    external: true
