@@ -1,6 +1,1 @@
-/volumes/*
-!/volumes/config
-/volumes/config/*
-!/volumes/config/coredns
-/volumes/config/coredns/*
-!/volumes/config/coredns/Corefile
+/volumes

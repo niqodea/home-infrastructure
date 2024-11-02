@@ -19,6 +19,8 @@ services:
       - INTERNAL_SUBNET=${WIREGUARD_NETWORK_SUBNET}
       # Tunnel everything through vpn
       - ALLOWEDIPS=0.0.0.0/1,128.0.0.0/1
+      # Ref: https://github.com/linuxserver/docker-wireguard/issues/62#issuecomment-2010533285
+      - USE_COREDNS=false
     volumes:
       - ./volumes/config:/config
     depends_on:

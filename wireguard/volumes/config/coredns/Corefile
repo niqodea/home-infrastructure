@@ -1,5 +1,0 @@
-.
-COREDNS_BROKEN_ON_PURPOSE
-
-Unfortunately there is no official way to stop Wireguard's built-in coredns
-Ref: https://github.com/linuxserver/docker-wireguard/issues/62
