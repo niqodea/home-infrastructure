@@ -4,7 +4,7 @@ services:
     image: vaultwarden/server@sha256:c2849f8189e4d425a9d80db0380566cc38577b289b9e6c88330e190e19af5a30
     container_name: vaultwarden
     env_file:
-      - .private.env
+      - .env-files/private.env
     environment:
       - WEBSOCKET_ENABLED=true
     volumes:

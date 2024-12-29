@@ -4,7 +4,7 @@ services:
     image: lscr.io/linuxserver/sonarr@sha256:6caa76b2e0a2bd56132f957b086cb7a57e1b03ee70bb5cfd61b373319f2c393c
     container_name: sonarr
     env_file:
-      - .linuxserverio.env
+      - .env-files/linuxserverio.env
     volumes:
       - ./volumes/config:/config
       - ${MEDIA_VOLUME}:/media
