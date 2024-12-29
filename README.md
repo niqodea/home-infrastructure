@@ -30,7 +30,7 @@ Each Docker Compose file might depend on one or more of the following files that
 
 - values from the `/.env` file, created from `/.env.sample`
 - environment files `/$SERVICE_NAME/*.env`, created from `/$SERVICE_NAME/*.env.sample` files
-- environment files `/env-files/*.env`, created from `/env-files/*.env.sample` files
+- environment files `/.environment/*.env`, created from `/.environment/*.env.sample` files
 - configuration files in the Docker volumes, created from `/$SERVICE_NAME/volumes-samples/*.sample` files by following the specific instructions they contain
 
 After creation of the files the Docker Compose file depends on, you can run it to launch the corresponding service.
@@ -44,7 +44,7 @@ We leverage symbolic links and centralized `env` files to keep configurations co
     - variables used both in a Compose files and as environment in a container
     - variables used in multiple Compose files
     - variables with personal data used in a Compose file
-- The files in `/env-files/*.env` contain variables used as environment in multiple containers
+- The files in `/.environment/*.env` contain variables used as environment in multiple containers
 - The files in `/$SERVICE_NAME/*.env` contain variables with personal data used as environment in a container
 
 All other variables are hardcoded in the Compose files to keep it simple.

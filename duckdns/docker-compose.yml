@@ -4,7 +4,7 @@ services:
     image: ghcr.io/linuxserver/duckdns@sha256:6800f6e9f3df887246205c7994ede5015cfa2bbfba5339a4c828bbc5af80d75e
     container_name: duckdns
     env_file:
-      - linuxserverio.env
+      - .linuxserverio.env
     environment:
       - SUBDOMAINS=${DUCKDNS_SUBDOMAIN}  # comma-separated list
       - TOKEN=${DUCKDNS_TOKEN}

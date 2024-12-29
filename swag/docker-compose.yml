@@ -6,7 +6,7 @@ services:
     cap_add:
       - NET_ADMIN
     env_file:
-      - linuxserverio.env
+      - .linuxserverio.env
     environment:
       # Ref: https://docs.linuxserver.io/general/swag#create-container-via-duckdns-validation-with-a-wildcard-cert
       - URL=${DUCKDNS_SUBDOMAIN}.duckdns.org
