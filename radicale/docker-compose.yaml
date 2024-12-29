@@ -21,7 +21,7 @@ services:
     #   - KILL
     restart: unless-stopped
     volumes:
-      - ./data.plug:/data
+      - ./data:/data
 
 networks:
   default:

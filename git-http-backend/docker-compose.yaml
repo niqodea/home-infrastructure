@@ -10,7 +10,7 @@ services:
       args:
         ROOT: /var/www/git
     volumes:
-      - ./root.plug:/var/www/git
+      - ./root:/var/www/git
     restart: unless-stopped
 
 networks:
