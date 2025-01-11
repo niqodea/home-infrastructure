@@ -10,8 +10,8 @@ services:
       args:
         ROOT: /var/www/git
     volumes:
-      - ./root:/var/www/git
-    restart: unless-stopped
+      - .volumes/root:/var/www/git
+    restart: on-failure
 
 networks:
   default:

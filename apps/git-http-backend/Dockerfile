@@ -5,8 +5,7 @@ ENV ROOT=${ROOT}
 
 RUN apk add --no-cache git git-daemon lighttpd
 
-COPY lighttpd.conf /etc/lighttpd/lighttpd.conf
-
+COPY .build/lighttpd.conf /etc/lighttpd/lighttpd.conf
 
 EXPOSE 80
 
