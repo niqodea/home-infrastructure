@@ -19,9 +19,9 @@ services:
     #   - SETGID
     #   - CHOWN
     #   - KILL
-    restart: unless-stopped
+    restart: on-failure
     volumes:
-      - ./data:/data
+      - .volumes/data:/data
 
 networks:
   default:
