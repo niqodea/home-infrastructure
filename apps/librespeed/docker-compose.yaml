@@ -6,11 +6,10 @@ services:
     env_file:
       - .env-files/linuxserverio.env
     volumes:
-      - ./volumes/config:/config
-    restart: unless-stopped
+      - .volumes/config:/config
+    restart: on-failure
 
 networks:
   default:
     name: ${SWAG_NETWORK}
     external: true
-
