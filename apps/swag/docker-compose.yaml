@@ -20,8 +20,8 @@ services:
         ipv4_address: ${MAIN_NETWORK_SWAG_ADDRESS}
       swag-network:
     volumes:
-      - ./volumes/config:/config
-    restart: unless-stopped
+      - .volumes/config:/config
+    restart: on-failure
 
 networks:
   main-network:
@@ -33,4 +33,3 @@ networks:
           ip_range: ${MAIN_NETWORK_IP_RANGE}
   swag-network:
     name: ${SWAG_NETWORK}
-
