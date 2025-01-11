@@ -8,11 +8,10 @@ services:
     environment:
       - WEBSOCKET_ENABLED=true
     volumes:
-      - ./volumes/data:/data
-    restart: unless-stopped
+      - .volumes/data:/data
+    restart: on-failure
 
 networks:
   default:
     name: ${SWAG_NETWORK}
     external: true
-
