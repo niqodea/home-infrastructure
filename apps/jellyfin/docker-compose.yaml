@@ -5,14 +5,15 @@ services:
     container_name: jellyfin
     env_file:
       - .env-files/linuxserverio.env
+    ports:
+      - 8096:8096
     volumes:
-      - ./volumes/config:/config
+      - .volumes/config:/config
       - ${MEDIA_VOLUME}/movies:/data/movies
       - ${MEDIA_VOLUME}/shows:/data/shows
-    restart: unless-stopped
+    restart: on-failure
 
 networks:
   default:
     name: ${SWAG_NETWORK}
     external: true
-
