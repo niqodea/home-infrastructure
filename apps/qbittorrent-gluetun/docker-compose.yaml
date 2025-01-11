@@ -7,11 +7,11 @@ services:
     env_file:
       - .env-files/linuxserverio.env
     volumes:
-      - ./volumes/config:/config
+      - .volumes/config:/config
       - ${MEDIA_VOLUME}/downloads:/downloads
     depends_on:
       - qbittorrent-gluetun
-    restart: unless-stopped
+    restart: on-failure
 
   qbittorrent-gluetun:
     image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
@@ -26,11 +26,10 @@ services:
       # Expose health service externally
       - HEALTH_SERVER_ADDRESS=0.0.0.0:9999
     volumes:
-      - ./volumes/gluetun:/gluetun
-    restart: unless-stopped
+      - .volumes/gluetun:/gluetun
+    restart: on-failure
 
 networks:
   default:
     name: ${SWAG_NETWORK}
     external: true
-
