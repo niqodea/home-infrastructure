@@ -1,7 +1,10 @@
 version: '3.4'
 services:
   vaultwarden:
-    image: vaultwarden/server@sha256:c2849f8189e4d425a9d80db0380566cc38577b289b9e6c88330e190e19af5a30
+    image: "\
+      vaultwarden/server@sha256:\
+      63cce7624f655f83ad5bab66ef62bc3e3327116b068704bfbbda5d0c1b3003be\
+    "  # 1.33.2-alpine
     container_name: vaultwarden
     env_file:
       - .env-files/private.env

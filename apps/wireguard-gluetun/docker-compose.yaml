@@ -2,7 +2,10 @@ version: "2.1"
 services:
 
   wireguard-gluetun-internal:
-    image: lscr.io/linuxserver/wireguard@sha256:a27dc2b63245fa1c20fc55edf9aebf7cf3add71000557177c9fa62dba65b5d29
+    image: "\
+      linuxserver/wireguard@sha256:\
+      c095b08123345cefa1a8a589a417c56690c046ba925d292f4657f3fefcce1dfd\
+    "  # 1.0.20210914
     container_name: wireguard-gluetun-internal
     network_mode: service:wireguard-gluetun
     cap_add:
@@ -30,7 +33,10 @@ services:
   # We use dnsmasq instead of wireguard's built-in coredns
   # By hosting DNS server in the same gluetun container we tunnel queries through VPN
   wireguard-gluetun-internal-dnsmasq:
-    image: strm/dnsmasq
+    image: "\
+      strm/dnsmasq@sha256:\
+      dcf4c0aeb69ea6b9bca81314449d732ecd2ea021588d8a34d4be7c2304f89a39\
+    "  # latest, just one release in years
     container_name: wireguard-gluetun-internal-dnsmasq
     network_mode: service:wireguard-gluetun-internal
     cap_add:
@@ -42,7 +48,10 @@ services:
     restart: on-failure
 
   wireguard-gluetun:
-    image: qmcgaw/gluetun@sha256:7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5
+    image: "\
+      qmcgaw/gluetun@sha256:\
+      7b9fbfc187e7603d0039bf777ea4b278409e42f6d038c02deb14727153591ac5\
+    "  # TODO: update and fix incompatibility with current wireguard iptables setup
     container_name: wireguard-gluetun
     cap_add:
       - NET_ADMIN

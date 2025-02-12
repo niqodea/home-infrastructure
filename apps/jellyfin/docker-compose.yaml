@@ -1,7 +1,10 @@
 version: "2.1"
 services:
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin@sha256:d94b82bb7f6d794fb8d281a373a63ed0e64996224a1ba09f3bbfb14700345943
+    image: "\
+      linuxserver/jellyfin@sha256:\
+      7cdcd4b6b60765290af7a2740960ce30c1f5548313ae60f7e23f6995ed4d147e\
+    "  # 10.10.5
     container_name: jellyfin
     env_file:
       - .env-files/linuxserverio.env

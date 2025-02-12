@@ -1,24 +1,12 @@
-# Ref: https://github.com/tomsquest/docker-radicale/blob/55772db280ec8df20a4963549be2cfb6d4f1af86/docker-compose.yml
-
 version: '3.7'
 
 services:
   radicale:
-    image: tomsquest/docker-radicale
+    image: "\
+      tomsquest/docker-radicale@sha256:\
+      8b50b8c664d9557e47f723e18064d8f5f822e39d4e8a3d2385947ee13a2f8222\
+    "  # 3.4.1.0
     container_name: radicale
-    # ports:
-    #   - 127.0.0.1:5232:5232
-    # init: true
-    # read_only: true
-    # security_opt:
-    #   - no-new-privileges:true
-    # cap_drop:
-    #   - ALL
-    # cap_add:
-    #   - SETUID
-    #   - SETGID
-    #   - CHOWN
-    #   - KILL
     restart: on-failure
     volumes:
       - .volumes/data:/data
